@@ -20,7 +20,7 @@ public class GuestbookDao {
 		Connection connection = null;
 		try {
 			Class.forName( "com.mysql.jdbc.Driver" );
-			String url = "jdbc:mysql://localhost/webdb";
+			String url = "jdbc:mysql://localhost/webdb?useUnicode=true&characterEncoding=utf-8";
 		
 			connection = DriverManager.getConnection(url, "webdb", "webdb");
 		

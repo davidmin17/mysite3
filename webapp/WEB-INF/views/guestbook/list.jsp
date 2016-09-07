@@ -12,26 +12,18 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>MySite</h1>
-			<ul>
-				<li><a href="">로그인</a><li>
-				<li><a href="">회원가입</a><li>
-				<li><a href="">회원정보수정</a><li>
-				<li><a href="">로그아웃</a><li>
-				<li>님 안녕하세요 ^^;</li>
-			</ul>
+			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div>
 		<div id="content">
 			<div id="guestbook">
-				<form action="/mysite/guestbook" method="post">
-					<input type="hidden" name="a" value="insert">
+				<form method="post" action="${pageContext.request.contextPath }/guestbook/write">
 					<table>
 						<tr>
 							<td>이름</td><td><input type="text" name="name"></td>
-							<td>비밀번호</td><td><input type="password" name="pass"></td>
+							<td>비밀번호</td><td><input type="password" name="password"></td>
 						</tr>
 						<tr>
-							<td colspan=4><textarea name="content" id="content"></textarea></td>
+							<td colspan=4><textarea name="message" id="message"></textarea></td>
 						</tr>
 						<tr>
 							<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
@@ -47,7 +39,7 @@
 									<td>[${count - status.index }]</td>
 									<td>${vo.name }</td>
 									<td>${vo.regDate }</td>
-									<td><a href="guestbook?a=deleteform&no=${vo.no }">삭제</a></td>
+									<td><a href="${pageContext.request.contextPath }/guestbook/deleteform/${vo.no }">삭제</a></td>
 								</tr>
 								<tr>
 									<td colspan=4>

@@ -1,7 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>  
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%
-	String no = request.getParameter("no");
-%>
 <!doctype html>
 <html>
 <head>
@@ -12,25 +12,17 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>MySite</h1>
-			<ul>
-				<li><a href="">로그인</a><li>
-				<li><a href="">회원가입</a><li>
-				<li><a href="">회원정보수정</a><li>
-				<li><a href="">로그아웃</a><li>
-				<li>님 안녕하세요 ^^;</li>
-			</ul>
+			<c:import url="/WEB-INF/views/include/header.jsp" />
 		</div>
 		<div id="content">
 			<div id="guestbook" class="delete-form">
-				<form method="post" action="guestbook">
-					<input type="hidden" name="a" value="delete">
-					<input type="hidden" name="no" value="<%=no%>">
+				<form method="post" action="${pageContext.request.contextPath }/guestbook/delete">
+					<input type="hidden" name="no" value="${no }">
 					<label>비밀번호</label>
 					<input type="password" name="password">
 					<input type="submit" value="확인">
 				</form>
-				<a href="">방명록 리스트</a>
+				<a href="${pageContext.request.contextPath }/guestbook/list">방명록 리스트</a>
 			</div>
 		</div>
 		<div id="navigation">

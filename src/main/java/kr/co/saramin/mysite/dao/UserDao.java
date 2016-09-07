@@ -16,7 +16,7 @@ public class UserDao {
 		Connection connection = null;
 		try {
 			Class.forName( "com.mysql.jdbc.Driver" );
-			String url = "jdbc:mysql://localhost/webdb";
+			String url = "jdbc:mysql://localhost/webdb?useUnicode=true&characterEncoding=utf-8";
 		
 			connection = DriverManager.getConnection(url, "webdb", "webdb");
 		
@@ -86,7 +86,7 @@ public class UserDao {
 			pstmt.setString( 1, vo.getName() );
 			pstmt.setString( 2, vo.getEmail() );
 			pstmt.setString( 3, vo.getPassword() );
-			pstmt.setString( 4,  vo.getGender() );
+			pstmt.setString( 4, vo.getGender() );
 			
 			pstmt.executeUpdate();
 			

@@ -16,5 +16,4 @@
 
 	<context:annotation-config />
 	<context:component-scan base-package="kr.co.saramin.mysite.controller" />
-
 </beans>
