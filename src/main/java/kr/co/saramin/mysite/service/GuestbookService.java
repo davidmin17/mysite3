@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import kr.co.saramin.mysite.dao.GuestbookDao;
 import kr.co.saramin.mysite.vo.GuestbookVo;
-import kr.co.saramin.mysite.vo.UserVo;
 
 @Service
 public class GuestbookService {
@@ -15,6 +14,9 @@ public class GuestbookService {
 	private GuestbookDao guestbookDao;
 	
 	public List<GuestbookVo> getList() {
+		//GuestbookVo vo = guestbookDao.get(1L);
+		//System.out.println(vo);
+		
 		return guestbookDao.getList();
 	}
 	

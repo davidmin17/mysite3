@@ -25,7 +25,7 @@ public class GuestbookController {
 		List<GuestbookVo> list = guestbookService.getList();
 		model.addAttribute("list", list);
 		
-		return "/WEB-INF/views/guestbook/list.jsp";
+		return "guestbook/list";
 	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.POST)
@@ -37,7 +37,7 @@ public class GuestbookController {
 	@RequestMapping(value="/deleteform/{no}", method=RequestMethod.GET)
 	public String deleteform(@PathVariable("no") String no) {
 		
-		return "/WEB-INF/views/guestbook/deleteform.jsp";
+		return "guestbook/deleteform";
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
