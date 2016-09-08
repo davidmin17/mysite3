@@ -45,4 +45,9 @@ public class GuestbookController {
 		guestbookService.delete(guestbookVo);
 		return "redirect:/guestbook/list";
 	}
+	
+	@RequestMapping("/ajax")
+	public String index() {		
+		return "guestbook/ajax";
+	}
 }

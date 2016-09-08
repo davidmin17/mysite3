@@ -22,4 +22,12 @@ public class UserService {
 	public void modifyUser(UserVo userVo) {
 		userDao.update(userVo);
 	}
+	
+	public UserVo getUser(String email) {
+		return userDao.get(email);
+	}
+	
+	public UserVo getUser(Long no) {
+		return userDao.get(no);
+	}
 }

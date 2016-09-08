@@ -8,41 +8,6 @@
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.request.contextPath }/assets/css/user.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.9.0.js"></script>
-<script>
-$(function() {
-	$("input[type='button']").click(function() {
-		var email = $("#email").val();
-		
-		if (email == "") {
-			return;
-		} 
-		
-		$.ajax({
-			url: "${pageContext.request.contextPath }/user/api/checkemail?email="+email,
-			type: "get",
-			dataType: "json",
-			data: "",
-			success: function(response) {
-				if (response.result == "fail") {
-					console.error(response.message);
-					return;
-				}
-				
-				if (response.data == false) {
-					alert("사용중");
-					$("#email").val("");
-					$("#email").focus();
-					return;
-				}
-			},
-			error: function(jqXHR, status, error) {
-				console.log(status+":"+error);
-			}
-		});
-	});
-})
-</script>
 </head>
 <body>
 	<div id="container">
@@ -52,16 +17,13 @@ $(function() {
 		<div id="content">
 			<div id="user">
 
-				<form id="join-form" name="joinForm" method="post" action="${pageContext.request.contextPath }/user/join">
+				<form id="join-form" name="joinForm" method="post" action="${pageContext.request.contextPath }/user/update">
 					<label class="block-label" for="name">이름</label>
-					<input id="name" name="name" type="text" value="">
+					<input id="name" name="name" type="text" value="${userVo.name }">
 
 					<label class="block-label" for="email">이메일</label>
-					<input id="email" name="email" type="text" value="">
+					<input id="email" name="email" type="text" value="${userVo.email }">
 					<input type="button" value="id 중복체크">
-					
-					<label class="block-label">패스워드</label>
-					<input name="password" type="password" value="">
 					
 					<fieldset>
 						<legend>성별</legend>

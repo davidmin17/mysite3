@@ -1,15 +1,16 @@
 package kr.co.saramin.mysite.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.saramin.mysite.service.UserService;
 import kr.co.saramin.mysite.vo.UserVo;
+import kr.co.saramin.security.annotation.Auth;
+import kr.co.saramin.security.annotation.AuthUser;
 
 @Controller
 @RequestMapping ("/user")
@@ -33,44 +34,23 @@ public class UserController {
 		return "user/loginform";
 	}
 	
-	@RequestMapping("/login")
-	public String login(HttpSession session, @ModelAttribute UserVo userVo) {
-		UserVo authUser = userService.login(userVo);
+	@Auth
+	@RequestMapping("/updateform")
+	public String updateform(@AuthUser UserVo authUser, Model model) {
 		
-		if (authUser == null) {
-			return "redirect:/user/loginform?result=fail";
-		}
+		UserVo userVo = userService.getUser(authUser.getNo());
+		model.addAttribute("userVo", userVo);
 		
-		session.setAttribute("authUser", authUser);
-		
-		return "redirect:/index";
+		return "user/updateform";
 	}
 	
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-		session.removeAttribute("authUser");
-		session.invalidate();
-		
-		return "redirect:/index";
-	}
-		
+	@Auth
 	@RequestMapping("/update")
-	public String update(HttpSession session) {
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		
-		if ( authUser == null) {
-			return "redirect:/index";
-		}
-		
-		UserVo userVo = new UserVo();
+	public String update(@AuthUser UserVo authUser, @ModelAttribute UserVo userVo) {
 		userVo.setNo(authUser.getNo());
-		userVo.setPassword("");
-		userVo.setName("안대혁2");
-		userVo.setGender("FEMALE");
-				
 		userService.modifyUser(userVo);
 		
-		return "redirect:/index";
+		return "redirect:/updateform";
 	}
 	
 	/*

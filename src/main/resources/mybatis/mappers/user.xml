@@ -21,4 +21,14 @@
 			gender = #{gender } where no = #{no }
 		]]>
 	</update>
+	<select id="getByEmail" parameterType="string" resultType="uservo">
+		<![CDATA[
+			SELECT no, name FROM user WHERE email=#{email }
+		]]>
+	</select>
+	<select id="getByNo" parameterType="long" resultType="uservo">
+		<![CDATA[
+			SELECT no, name, gender, email FROM user WHERE no=#{no }
+		]]>
+	</select>
 </mapper>
