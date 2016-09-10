@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StopWatch;
 
 import kr.co.saramin.mysite.vo.GuestbookVo;
 
@@ -35,8 +36,9 @@ public class GuestbookDao {
 		return count;
 	}
 	
-	public List<GuestbookVo> getList() {
+	public List<GuestbookVo> getList() {		
 		List<GuestbookVo> list = sqlSession.selectList("guestbook.getList");
+				
 		return list;
 	}
 }
